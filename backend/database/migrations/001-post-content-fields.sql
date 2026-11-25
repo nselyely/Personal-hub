@@ -1,0 +1,16 @@
+USE personal_family_hub;
+
+ALTER TABLE posts
+  ADD COLUMN category VARCHAR(80) NOT NULL DEFAULT 'Personal story' AFTER title,
+  ADD COLUMN summary VARCHAR(2000) NOT NULL DEFAULT '' AFTER category,
+  ADD COLUMN image_path VARCHAR(500) NULL AFTER content;
+
+CREATE TABLE IF NOT EXISTS sessions (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  user_id BIGINT UNSIGNED NOT NULL,
+  token_hash CHAR(64) NOT NULL UNIQUE,
+  expires_at DATETIME NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_sessions_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  INDEX idx_sessions_expiry (expires_at)
+);
