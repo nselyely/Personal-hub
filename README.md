@@ -71,6 +71,18 @@ email delivery are not implemented yet.
 
 The schema includes `super_admin`, `editor`, `family_member`, and `visitor` roles, account status, and `public` / `family` / `private` visibility fields. The demo uses sample copy and remotely hosted Unsplash images; visitors' browsers request those image URLs from Unsplash. Keep `.env` local and never commit credentials.
 
+## Deploy the frontend only with GitHub Pages
+
+The `Deploy frontend to GitHub Pages` workflow builds the React/Vite site from
+`frontend/` whenever `main` changes. Enable **Settings → Pages → Build and
+deployment → Source → GitHub Actions** if GitHub Pages is not enabled for the
+repository. After the workflow succeeds, the site is available at
+`https://nselyely.github.io/Personal-hub/`.
+
+This publishes the frontend only. Sign-in, registration, comments, family
+content, and other API-backed features require a separately deployed backend
+and will not work until one is connected.
+
 ## Deploying with GitHub, Netlify, and Railway
 
 Netlify serves the Vite frontend and rewrites `/api/*` requests to the Express
